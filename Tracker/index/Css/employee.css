@@ -1,0 +1,72 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa; /* Light grey background */
+    font-family: 'Arial', sans-serif; /* Clean font */
+}
+
+.container-custom {
+    flex: 1; /* Allows container to grow and take up available space */
+    max-width: 600px; /* Center the container */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px;
+    background-color: #ffffff; /* White background for the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 40%;
+    
+}
+
+.footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 10px 0; /* Adjusted padding for better spacing */
+    position: relative; /* Ensure footer is positioned relative to its container */
+    width: 100%;
+    /* No need for bottom property here */
+}
+
+.footer p {
+    margin: 0; /* Remove default margin for better alignment */
+    text-align: center;
+}
+
+
+
+/* Custom styles for a more polished look */
+body {
+    background-color: #f8f9fa; /* Light grey background */
+    font-family: 'Arial', sans-serif; /* Clean font */
+}
+
+.card {
+    margin-top: 20px; /* Space above the card */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+}
+.card-body {
+    padding: 20px; /* Padding inside the card */
+}
+.btn-custom {
+    width: 20%; /* Set button width */
+    display: block;
+    margin: 20px auto 0; /* Center button and add top margin */
+}
+h1 {
+    font-size: 2rem; /* Larger heading */
+    color: #343a40; /* Dark grey color */
+}
+.card-title {
+    font-size: 1.5rem; /* Larger card title */
+    color: #495057; /* Darker grey color */
+}
+.card-text {
+    font-size: 1rem; /* Standard font size */
+    color: #6c757d; /* Medium grey color */
+}

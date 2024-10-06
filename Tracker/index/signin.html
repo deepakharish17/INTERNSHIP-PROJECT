@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons/css/boxicons.min.css' rel='stylesheet'>
+    <title>Workflow Tracker</title>
+    <link rel="icon" href="./images/LTTS-logo.png">
+    <link rel="stylesheet" href="./Css/signin.css">
+</head>
+
+<body>
+    <div id="container" class="container">
+        <!-- FORM SECTION -->
+        <div class="row">
+            <!-- SIGN UP -->
+            <div class="col align-items-center flex-col sign-up">
+                <div class="form-wrapper align-items-center">
+                    <div class="form sign-up">
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="signup-username" placeholder="Username">
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="signup-psno" placeholder="PS NO">
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bx-mail-send'></i>
+                            <input type="email" id="signup-email" placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" id="signup-password" placeholder="Password">
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" id="signup-confirm-password" placeholder="Confirm password">
+                        </div>
+                        <button onclick="signUp()">Sign up</button>
+                        <p>
+                            <span>Already have an account?</span>
+                            <b onclick="toggle()" class="pointer">Sign in here</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- END SIGN UP -->
+
+            <!-- SIGN IN -->
+            <div class="col align-items-center flex-col sign-in">
+                <div class="form-wrapper align-items-center">
+                    <div class="form sign-in">
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" id="signin-username" placeholder="Username">
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" id="signin-password" placeholder="Password">
+                        </div>
+                        <button onclick="signIn()">Sign in</button>
+                        <p><b onclick="forgotPassword()" class="pointer">Forgot password?</b></p>
+                        <p>
+                            <span>Don't have an account?</span>
+                            <b onclick="toggle()" class="pointer">Sign up here</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- END SIGN IN -->
+        </div>
+        <!-- END FORM SECTION -->
+
+        <!-- CONTENT SECTION -->
+        <div class="row content-row">
+            <!-- SIGN IN CONTENT -->
+            <div class="col align-items-center flex-col">
+                <div class="text sign-in">
+                    <h2>Welcome</h2>
+                </div>
+                <div class="img sign-in"></div>
+            </div>
+            <!-- END SIGN IN CONTENT -->
+
+            <!-- SIGN UP CONTENT -->
+            <div class="col align-items-center flex-col">
+                <div class="img sign-up"></div>
+                <div class="text sign-up">
+                    <h2>Join with us</h2>
+                </div>
+            </div>
+            <!-- END SIGN UP CONTENT -->
+        </div>
+        <!-- END CONTENT SECTION -->
+    </div>
+
+    <script>
+        let container = document.getElementById('container');
+
+        function toggle() {
+            container.classList.toggle('sign-in');
+            container.classList.toggle('sign-up');
+        }
+
+        function signUp() {
+            let username = document.getElementById('signup-username').value;
+            let psno = document.getElementById('signup-psno').value;
+            let email = document.getElementById('signup-email').value;
+            let password = document.getElementById('signup-password').value;
+            let confirmPassword = document.getElementById('signup-confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            let userData = {
+                username: username,
+                psno: psno,
+                email: email,
+                password: password
+            };
+
+            localStorage.setItem(username, JSON.stringify(userData));
+            alert('Sign up successful! You can now sign in.');
+            toggle(); // Switch to the sign-in form after sign-up
+        }
+
+        function signIn() {
+            let username = document.getElementById('signin-username').value;
+            let password = document.getElementById('signin-password').value;
+
+            let storedUser = localStorage.getItem(username);
+            if (!storedUser) {
+                alert('User not found.');
+                return;
+            }
+
+            let userData = JSON.parse(storedUser);
+            if (userData.password === password) {
+                alert('Sign in successful!');
+                window.location.href = 'index.html'; // Redirect to the index page
+            } else {
+                alert('Invalid credentials.');
+            }
+        }
+
+        function forgotPassword() {
+            let username = prompt('Enter your username:');
+            let storedUser = localStorage.getItem(username);
+
+            if (!storedUser) {
+                alert('User not found.');
+                return;
+            }
+
+            let userData = JSON.parse(storedUser);
+            alert(`Your password is: ${userData.password}`);
+        }
+
+        setTimeout(() => {
+            container.classList.add('sign-in');
+        }, 200);
+    </script>
+</body>
+
+</html>
